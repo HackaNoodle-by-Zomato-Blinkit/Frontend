@@ -6,6 +6,16 @@ import { experimentalStyled as styled } from '@mui/material/styles';
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
+import Card from '@mui/material/Card';
+import CardContent from '@mui/material/CardContent';
+import CardMedia from '@mui/material/CardMedia';
+import Typography from '@mui/material/Typography';
+import { Button, CardActionArea, CardActions } from '@mui/material';
+import Image from '../../static/ReadingComprehesion.png'
+import Image2 from '../../static/ColorTest.png'
+import Image3 from '../../static/WritingTest.png'
+import Image4 from '../../static/ImageIdentificationTest.png'
+
 
 
 const Item = styled(Paper)(({ theme }) => ({
@@ -19,68 +29,110 @@ const Item = styled(Paper)(({ theme }) => ({
 const StudentHome=()=>{
     return (
         <>
-        <NavBar name="Student name"/>
-        {/* <Grid container spacing={2}>
-        <Grid item xs={6}>
-            <Item><GameCard/></Item>
+        <NavBar/>
+        <Grid container direction='row' margin='5px' rowSpacing='1vh'>
+            <Grid item xs={12} justify='right' margin='auto' justifyContent='center' alignContent='center' display='flex' grid-template-columns='repeat(auto-fit)' >
+                <Item justify='center'  elevation='0' margin='auto'>
+                    <Card sx={{ maxWidth: 345}}  >
+                        <CardActionArea>
+                            <CardMedia
+                            component="img"
+                            height="140"
+                            image={Image}
+                            />
+                            <CardContent sx={{justifyContent:'center', color:"white"}}>
+                            <Typography gutterBottom variant="h5" component="div" color="black">
+                                Reading Comprehension Test
+                            </Typography>
+                            <Typography variant="body2" color="Grey" >
+                                <div>A passage of text will be displayed and you have to read it aloud. Motive this will help then improve reading skills. </div>
+                            </Typography>
+                            </CardContent>
+                        </CardActionArea>
+                        <CardActions sx={{justifyContent:'center', backgroundColor:"Green", color:"black"}}>
+                            <Button size="small" sx={{color:'white'}} >
+                               Start Test
+                            </Button>
+                        </CardActions>
+                    </Card>
+                </Item>
+                <Item elevation='0'>
+                    <Card sx={{ maxWidth: 345}}  >
+                        <CardActionArea>
+                            <CardMedia
+                            component="img"
+                            height="140"
+                            image={Image2}
+                            />
+                            <CardContent sx={{justifyContent:'center', color:"white"}}>
+                            <Typography gutterBottom variant="h5" component="div" color="black">
+                                Color identification Test
+                            </Typography>
+                            <Typography variant="body2" color="Grey" >
+                                <div> You have to quickly identify the color displayed over the screen. Motive is to improve performance under pressure sceniors.</div>
+                            </Typography>
+                            </CardContent>
+                        </CardActionArea>
+                        <CardActions sx={{justifyContent:'center', backgroundColor:"Green", color:"black"}}>
+                            <Button size="small" sx={{color:'white'}} >
+                            Start Test
+                            </Button>
+                        </CardActions>
+                    </Card>
+                </Item>
+            </Grid>
+            <Grid item xs={12} justify='right' margin='auto' justifyContent='center' alignContent='center' display='flex' grid-template-columns='repeat(auto-fit)'>
+                <Item justify='center'  elevation='0' margin='auto'>
+                    <Card sx={{ maxWidth: 345}}  >
+                        <CardActionArea>
+                            <CardMedia
+                            component="img"
+                            height="140"
+                            image={Image3}
+                            
+                            />
+                            <CardContent sx={{justifyContent:'center', color:"white"}}>
+                            <Typography gutterBottom variant="h5" component="div" color="black">
+                            Writting Test
+                            </Typography>
+                            <Typography variant="body2" color="Grey" >
+                                <div>A word will be voice out you have to write the given word. Motive This will help then improve Writing skills.</div>
+                            </Typography>
+                            </CardContent>
+                        </CardActionArea>
+                        <CardActions sx={{justifyContent:'center', backgroundColor:"Green", color:"black"}}>
+                            <Button size="small" sx={{color:'white'}} >
+                                Start Test
+                            </Button>
+                        </CardActions>
+                    </Card>
+                </Item>
+                <Item elevation='0'>
+                    <Card sx={{ maxWidth: 345}}  >
+                        <CardActionArea>
+                            <CardMedia
+                            component="img"
+                            height="140"
+                            image={Image4}
+                            />
+                            <CardContent sx={{justifyContent:'center', color:"white"}}>
+                                <Typography gutterBottom variant="h5" component="div" color="black">
+                                    <bold>Image Identification Test</bold>
+                                </Typography>
+                                <Typography variant="body2" color="Grey" >
+                                    <div>Task is to identidy the image displayed on the screen . Motive this will improve identification skills and help them</div>
+                                </Typography>
+                            </CardContent>
+                        </CardActionArea>
+                        <CardActions sx={{justifyContent:'center', backgroundColor:"Green", color:"black"}}>
+                            <Button size="small" sx={{color:'white'}} >
+                            Start Test
+                            </Button>
+                        </CardActions>
+                    </Card>
+                </Item>
+            </Grid>
         </Grid>
-        <Grid item xs={6}>
-            <Item><GameCard/></Item>
-        </Grid>
-        <Grid item xs={6}>
-            <Item><GameCard/></Item>
-        </Grid>
-        <Grid item xs={6}>
-            <Item><GameCard/></Item>
-        </Grid>
-        </Grid> */}
-        {/* <Box sx={{ flexGrow: 1 }}>
-      <Grid container spacing={{ xs: 2, md: 3 }} columns={{ xs: 8, sm: 8, md: 8 }}>
-        <Grid item xs={2} sm={4} md={4}>
-        <Item><GameCard/></Item>
-        <Item><GameCard/></Item>
-        <Item><GameCard/></Item>
-        <Item><GameCard/></Item>
-        </Grid>
-      </Grid>
-    </Box> */}
-        {/* <Container fluid>
-      <Row xs={2} md={2} lg={2}>
-        <Col ><GameCard/></Col>
-        <Col ><GameCard/></Col>
-      </Row>
-      <Row xs={2} md={2} lg={2}>
-        <Col ><GameCard/></Col>
-        <Col ><GameCard/></Col>
-      </Row>
-    </Container> */}
-    {/* <div sx={{minWidth:'100vh'}}>
-        <div sx={{maxWidth:'50vh',display:'flex',flexdirection:'column'}}>
-            <GameCard/>
-            <GameCard/>
-        </div>
-        <div  sx={{maxWidth:'50vh',display:'flex',flexdirection:'row'}}>
-            <GameCard/>
-            <GameCard/>
-        </div>
-    </div> */}
-    
-    <Grid container  direction='row'   margin='10px' rowSpacing='5vh'  >
-        <Grid item xs={12} justify='right' margin='auto' justifyContent='center' alignContent='center' display='flex' grid-template-columns='repeat(auto-fit)' >
-            <Item justify='center'  elevation='0' margin='auto' ><GameCard/></Item>
-            <Item elevation='0'><GameCard/></Item>
-        </Grid>
-        <Grid item xs={12} justify='right' margin='auto' justifyContent='center' alignContent='center' display='flex' grid-template-columns='repeat(auto-fit)'>
-            <Item justify='center'  elevation='0' margin='auto'><GameCard/></Item>
-            <Item elevation='0'><GameCard/></Item>
-        </Grid>
-    </Grid>
-    <Grid lg={12} item container spacing={2}>
-        <Grid item lg={3} sm={6} xs={12} ><h1 style={{backgroundColor:'green'}}></h1></Grid>
-        <Grid item lg={3} sm={6} xs={12} ><h1 style={{backgroundColor:'green'}}></h1></Grid>
-        <Grid item lg={3} sm={6} xs={12} ><h1 style={{backgroundColor:'green'}}></h1></Grid>
-        <Grid item lg={3} sm={6} xs={12} ><h1 style={{backgroundColor:'green'}}></h1></Grid>
-    </Grid>
     </>
     )
 }
