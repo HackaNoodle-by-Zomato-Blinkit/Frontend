@@ -15,7 +15,7 @@ import Image from '../../static/ReadingComprehesion.png'
 import Image2 from '../../static/ColorTest.png'
 import Image3 from '../../static/WritingTest.png'
 import Image4 from '../../static/ImageIdentificationTest.png'
-
+import { useNavigate } from 'react-router-dom';
 
 
 const Item = styled(Paper)(({ theme }) => ({
@@ -27,6 +27,7 @@ const Item = styled(Paper)(({ theme }) => ({
 }));
 
 const StudentHome=()=>{
+    const navigate = useNavigate()
     return (
         <>
         <NavBar/>
@@ -50,7 +51,9 @@ const StudentHome=()=>{
                             </CardContent>
                         </CardActionArea>
                         <CardActions sx={{justifyContent:'center', backgroundColor:"Green", color:"black"}}>
-                            <Button size="small" sx={{color:'white'}} >
+                            <Button onClick={()=>{
+                                navigate('/RapidReadingTest')
+                            }} size="small" sx={{color:'white'}} >
                                Start Test
                             </Button>
                         </CardActions>
@@ -74,7 +77,9 @@ const StudentHome=()=>{
                             </CardContent>
                         </CardActionArea>
                         <CardActions sx={{justifyContent:'center', backgroundColor:"Green", color:"black"}}>
-                            <Button size="small" sx={{color:'white'}} >
+                            <Button onClick={()=>{
+                                navigate('/ColorIdentificationTest')
+                            }} size="small" sx={{color:'white'}} >
                             Start Test
                             </Button>
                         </CardActions>
@@ -101,7 +106,9 @@ const StudentHome=()=>{
                             </CardContent>
                         </CardActionArea>
                         <CardActions sx={{justifyContent:'center', backgroundColor:"Green", color:"black"}}>
-                            <Button size="small" sx={{color:'white'}} >
+                            <Button onClick={()=>{
+                                navigate('/WrittingTest')
+                            }} size="small" sx={{color:'white'}} >
                                 Start Test
                             </Button>
                         </CardActions>
@@ -125,7 +132,9 @@ const StudentHome=()=>{
                             </CardContent>
                         </CardActionArea>
                         <CardActions sx={{justifyContent:'center', backgroundColor:"Green", color:"black"}}>
-                            <Button size="small" sx={{color:'white'}} >
+                            <Button onClick={()=>{
+                                navigate('/ImageIdentificationTest')
+                            }} size="small" sx={{color:'white'}} >
                             Start Test
                             </Button>
                         </CardActions>

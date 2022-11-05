@@ -6,9 +6,6 @@ import TextField from '@mui/material/TextField';
 import Checkbox from '@mui/material/Checkbox';
 import {Link,useNavigate} from 'react-router-dom';
 
-
-
-
 const Login= ()=>{
 
     const naviagate = useNavigate()
@@ -34,9 +31,6 @@ const Login= ()=>{
         </Grid>
         </Grid>
        
-         
-     
-        
 
         <Button onClick={()=>{
             naviagate('/studenthome')
