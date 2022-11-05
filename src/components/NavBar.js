@@ -16,7 +16,8 @@ const NavBar = ()=>{
           <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
             Welcome, (Student Name) !
           </Typography>
-          <Button color="inherit">Login</Button>
+          <Button color="inherit">View Previous Results</Button>
+          <Button color="inherit">Logout</Button>
         </Toolbar>
       </AppBar>
     </Box>
