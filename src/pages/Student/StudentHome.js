@@ -19,7 +19,7 @@ const Item = styled(Paper)(({ theme }) => ({
 const StudentHome=()=>{
     return (
         <>
-        <NavBar/>
+        <NavBar name="Student name"/>
         {/* <Grid container spacing={2}>
         <Grid item xs={6}>
             <Item><GameCard/></Item>
