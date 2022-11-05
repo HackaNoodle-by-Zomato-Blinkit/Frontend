@@ -3,10 +3,11 @@ import CardContent from '@mui/material/CardContent';
 import Typography from '@mui/material/Typography';
 import {Grid,Stack,Button} from '@mui/material';
 import TextField from '@mui/material/TextField';
-import {Link} from 'react-router-dom';
+import {Link,useNavigate} from 'react-router-dom';
 
 
 const Register = ()=>{
+    const naviagate = useNavigate()
     return (
         <>
             <Grid container justifyContent="center">
@@ -20,10 +21,15 @@ const Register = ()=>{
             <TextField label="Confirm Password" type="password" />
             
             
-        
-                <Button  variant="contained" color="success">Register</Button>
+              <Button onClick={()=>{
+                    naviagate('/studenthome')
+                }} variant="contained" color="success">Register</Button>
+                <Button  onClick={()=>{
+                    naviagate('/doctorregister')
+                }}  variant="contained" color="success">Register As Doctor</Button>
                 </Stack>
-                <Typography variant="h6" align="center">Already have a account? <Link to="/login"><Button>Sign In</Button></Link></Typography>
+                <Typography variant="h6" align="center">Already have a account? <Link to="/login">
+                    <Button>Sign In</Button></Link></Typography>
                 </CardContent>
                 </Card>
                 </Grid>
