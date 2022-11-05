@@ -12,7 +12,6 @@ const NavBar = (props)=>{
          <Box sx={{ flexGrow: 1}}>
       <AppBar position="static" color="success">
         <Toolbar>
-         
           <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
             Welcome, {props.name} !
           </Typography>
