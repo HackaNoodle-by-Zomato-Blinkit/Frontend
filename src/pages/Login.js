@@ -40,7 +40,10 @@ const Login= ()=>{
 
         <Button onClick={()=>{
             naviagate('/studenthome')
-        }} variant="contained" color="success">Sign In</Button>
+        }} variant="contained" color="success">Sign In As Learner</Button>
+         <Button onClick={()=>{
+            naviagate('/doctorhome')
+        }} variant="contained" color="success">Sign In As Doctor</Button>
       </Stack>
         </CardContent>
     </Card>

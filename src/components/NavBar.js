@@ -6,7 +6,7 @@ import Button from '@mui/material/Button';
 import IconButton from '@mui/material/IconButton';
 import MenuIcon from '@mui/icons-material/Menu';
 
-const NavBar = ()=>{
+const NavBar = (props)=>{
     return (
         <>
          <Box sx={{ flexGrow: 1}}>
@@ -14,7 +14,7 @@ const NavBar = ()=>{
         <Toolbar>
          
           <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
-            Welcome, (Student Name) !
+            Welcome, {props.name} !
           </Typography>
           <Button color="inherit">View Previous Results</Button>
           <Button color="inherit">Logout</Button>
