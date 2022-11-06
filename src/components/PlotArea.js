@@ -1,15 +1,16 @@
 import BarChart from "../charts/BarChart";
-import { UserData } from "../Data";
 import { useState } from "react";
 import LineChart from "../charts/LineChart";
 
 export default function PlotArea(props){
+    console.log('prop received ')
+    console.log(props.UserData)
     const [userData, setUserData] = useState({
-        labels: UserData.map((data) => data.datetime),
+        labels: props.UserData.map((data) => data.datetime),
         datasets: [
           {
             label: "Score",
-            data: UserData.map((data) => data.score1),
+            data:props.UserData.map((data) => data.score1),
             backgroundColor: [
               "rgba(75,192,192,1)",
               "#ecf0f1",
