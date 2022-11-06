@@ -16,7 +16,8 @@ import Image2 from '../../static/ColorTest.png'
 import Image3 from '../../static/WritingTest.png'
 import Image4 from '../../static/ImageIdentificationTest.png'
 import { useNavigate } from 'react-router-dom';
-
+import axios from 'axios';
+import { useEffect,useState } from 'react';
 
 const Item = styled(Paper)(({ theme }) => ({
   backgroundColor: theme.palette.mode === 'dark' ? '#1A2027' : '#fff',
@@ -28,9 +29,32 @@ const Item = styled(Paper)(({ theme }) => ({
 
 const StudentHome=()=>{
     const navigate = useNavigate()
+    const [obj,setObj]=useState(false)
+    useEffect(() => {
+        var config = {
+            method: 'get',
+            url: 'http://localhost:8000/patient',
+            headers: { 
+                'Authorization':`Token ${localStorage.getItem('token')}`,
+            }
+        };
+        const dojob=async()=>{
+            axios(config)
+        .then(function (response) {
+            console.log(JSON.stringify(response.data));
+            console.log(obj.name)
+            setObj(response.data);
+        })
+        .catch(function (error) {
+            console.log(error);
+        });
+        }
+        dojob();
+      }, []);
+      console.log(obj.name)
     return (
         <>
-        <NavBar/>
+        {obj?<NavBar name={obj.name}/>:null}
         <Grid container direction='row' margin='5px' rowSpacing='1vh'>
             <Grid item xs={12} justify='right' margin='auto' justifyContent='center' alignContent='center' display='flex' grid-template-columns='repeat(auto-fit)' >
                 <Item justify='center'  elevation='0' margin='auto'>

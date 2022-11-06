@@ -45,6 +45,7 @@ const DoctorHome=()=>{
             console.log(error);
         });
         }
+          
         dojob();
       }, []);
     
