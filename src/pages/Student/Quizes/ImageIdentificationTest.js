@@ -11,7 +11,6 @@ import SampleImage2 from '../../../static/bird.png'
 import SampleImage3 from '../../../static/books.jpg'
 import SampleImage4 from '../../../static/car.jpg'
 import SampleImage5 from '../../../static/chair.avif'
-import SampleImage6 from '../../../static/check.jpg'
 import SampleImage7 from '../../../static/comb.png'
 import SampleImage8 from '../../../static/duck.jpg'
 import SampleImage9 from '../../../static/spoon.png'
@@ -20,122 +19,111 @@ const ImageIdentificationTest = () => {
     const questions = [
 		{
             image : SampleImage,
-			questionText: 'What is the capital of France?',
+			questionText: 'Name this fruit',
 			answerOptions: [
-				{ answerText: 'New York', isCorrect: false },
-				{ answerText: 'London', isCorrect: false },
-				{ answerText: 'Paris', isCorrect: true },
-				{ answerText: 'Dublin', isCorrect: false },
+				{ answerText: 'APPLE', isCorrect: true },
+				{ answerText: 'APPLƎ', isCorrect: false },
+				{ answerText: 'AԳԳLE', isCorrect: false },
+				{ answerText: 'APP⅃E', isCorrect: false },
 			],
 		},
 		{
             image : SampleImage1,
 
-			questionText: 'Who is CEO of Tesla?',
+			questionText: 'Identify the Given Object',
 			answerOptions: [
-				{ answerText: 'Jeff Bezos', isCorrect: false },
-				{ answerText: 'Elon Musk', isCorrect: true },
-				{ answerText: 'Bill Gates', isCorrect: false },
-				{ answerText: 'Tony Stark', isCorrect: false },
+				{ answerText: 'ႧAG', isCorrect: false },
+				{ answerText: 'BAG', isCorrect: true },
+				{ answerText: 'ઘAG', isCorrect: false },
+				{ answerText: 'BAӘ', isCorrect: false },
 			],
 		},
 		{
             image : SampleImage2,
 
-			questionText: 'The iPhone was created by which company?',
+			questionText: 'Identify the Given Animal',
 			answerOptions: [
-				{ answerText: 'Apple', isCorrect: true },
-				{ answerText: 'Intel', isCorrect: false },
-				{ answerText: 'Amazon', isCorrect: false },
-				{ answerText: 'Microsoft', isCorrect: false },
+				{ answerText: 'BIRD', isCorrect: true },
+				{ answerText: 'BIЯD', isCorrect: false },
+				{ answerText: 'ઘIRD', isCorrect: false },
+				{ answerText: 'BIRႧ', isCorrect: false },
 			],
 		},
 		{
             image : SampleImage3,
 
-			questionText: 'How many Harry Potter books are there?',
+			questionText: 'Identify the given object',
 			answerOptions: [
-				{ answerText: '1', isCorrect: false },
-				{ answerText: '4', isCorrect: false },
-				{ answerText: '6', isCorrect: false },
-				{ answerText: '7', isCorrect: true },
+				{ answerText: 'ઘOOK', isCorrect: false },
+				{ answerText: 'BOOK', isCorrect: false },
+				{ answerText: 'BOOﻼ', isCorrect: false },
+				{ answerText: 'ઘOOﻼ', isCorrect: true },
 			],
 		},
         {
             image : SampleImage4,
 
-			questionText: 'How many Harry Potter books are there?',
+			questionText: 'Identify the given object',
 			answerOptions: [
-				{ answerText: '1', isCorrect: false },
-				{ answerText: '4', isCorrect: false },
-				{ answerText: '6', isCorrect: false },
-				{ answerText: '7', isCorrect: true },
+				{ answerText: 'ɔaɹ', isCorrect: false },
+				{ answerText: 'ɔar', isCorrect: false },
+				{ answerText: 'caɹ', isCorrect: false },
+				{ answerText: 'car', isCorrect: true },
 			],
 		},
         {
             image : SampleImage5,
 
-			questionText: 'How many Harry Potter books are there?',
+			questionText: 'Identify the given object',
 			answerOptions: [
-				{ answerText: '1', isCorrect: false },
-				{ answerText: '4', isCorrect: false },
-				{ answerText: '6', isCorrect: false },
-				{ answerText: '7', isCorrect: true },
-			],
-		},
-        {
-            image : SampleImage6,
-
-			questionText: 'How many Harry Potter books are there?',
-			answerOptions: [
-				{ answerText: '1', isCorrect: false },
-				{ answerText: '4', isCorrect: false },
-				{ answerText: '6', isCorrect: false },
-				{ answerText: '7', isCorrect: true },
+				{ answerText: 'CHAIЯ', isCorrect: false },
+				{ answerText: 'ƆHAIR', isCorrect: false },
+				{ answerText: 'CHAIR', isCorrect: true },
+				{ answerText: 'ƆHAIЯ', isCorrect: false },
 			],
 		},
         {
             image : SampleImage7,
 
-			questionText: 'How many Harry Potter books are there?',
+			questionText: 'Identify the given object',
 			answerOptions: [
-				{ answerText: '1', isCorrect: false },
-				{ answerText: '4', isCorrect: false },
-				{ answerText: '6', isCorrect: false },
-				{ answerText: '7', isCorrect: true },
+				{ answerText: 'COMઘ', isCorrect: false },
+				{ answerText: 'COMB', isCorrect: true },
+				{ answerText: 'ƆOMB', isCorrect: false },
+				{ answerText: 'ƆOMઘ', isCorrect: false },
 			],
 		},
         {
             image : SampleImage8,
 
-			questionText: 'How many Harry Potter books are there?',
+			questionText: 'Identify the Given Animal',
 			answerOptions: [
-				{ answerText: '1', isCorrect: false },
-				{ answerText: '4', isCorrect: false },
-				{ answerText: '6', isCorrect: false },
-				{ answerText: '7', isCorrect: true },
+				{ answerText: 'DUCK', isCorrect: true},
+				{ answerText: 'DUƆK', isCorrect: false },
+				{ answerText: 'ႧUCK', isCorrect: false },
+				{ answerText: 'ႧUƆK', isCorrect: false },
 			],
 		},
         {
             image : SampleImage9,
 
-			questionText: 'How many Harry Potter books are there?',
+			questionText: 'Identify the Given Object',
 			answerOptions: [
-				{ answerText: '1', isCorrect: false },
-				{ answerText: '4', isCorrect: false },
-				{ answerText: '6', isCorrect: false },
-				{ answerText: '7', isCorrect: true },
+				{ answerText: 'ƧPOON', isCorrect: false },
+				{ answerText: 'SPOON', isCorrect: true },
+				{ answerText: 'SPOOИ', isCorrect: false },
+				{ answerText: 'SPOON', isCorrect: false },
 			],
 		},
         {
             image : SampleImage10,
 
-			questionText: 'How many Harry Potter books are there?',
+			questionText: 'Identify the Given Number',
 			answerOptions: [
-				{ answerText: '1', isCorrect: false },
-				{ answerText: '4', isCorrect: false },
-				{ answerText: '6', isCorrect: false },
-				{ answerText: '7', isCorrect: true },
+				{ answerText: 'THЯƎƎ', isCorrect: false },
+				{ answerText: 'THRƎƎ', isCorrect: false },
+				{ answerText: 'THЯEE', isCorrect: false },
+				{ answerText: 'THREE', isCorrect: true },
 			],
 		},
 	];

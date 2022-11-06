@@ -6,7 +6,7 @@ import Fab from '@mui/material/Fab';
 import KeyboardVoiceIcon from '@mui/icons-material/KeyboardVoice';
 import { useState} from 'react';
 import StopIcon from '@mui/icons-material/Stop';
-
+import { useRecorder } from "voice-recorder-react";
 
 
 
@@ -41,6 +41,7 @@ let color = ['In recent years, handwritten digits recognition has been an import
 'Deep learning has increased the performance of classification and object detection, but it generally requires large amounts of labeled data for training. In this paper, we introduce a new data augmentation algorithm that promotes diversity between classes, representing the characters of the Arabic script, and can balance samples']
 
 let check = ""
+
 let data = []
 for(var i = 0; i < 1; i++ ){
         data.push(color[Math.floor(Math.random() * 6)])
@@ -55,7 +56,8 @@ const RapidReadingTest = () => {
     // const [timer, setTimer] = useState(30)
     const [rec,setRec] = useState(false)
 
-
+    const { time, data1, stop, start, pause, paused, resume, recording } =
+    useRecorder();
 
     return (
         <>
@@ -78,11 +80,12 @@ const RapidReadingTest = () => {
             
             
             <Fab onClick={()=>{
-                //  if(!rec) startRecording()
-                //  else {
-                //      stopRecording()
+                 if(!rec) start()
+                 else {
+                     stop()
+                     console.log(data1)
                      
-                //  }
+                 }
                 setRec(!rec)
                 
                
