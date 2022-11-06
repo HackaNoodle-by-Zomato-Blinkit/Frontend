@@ -5,8 +5,20 @@ import {Grid,Stack,Button,FormControlLabel} from '@mui/material';
 import TextField from '@mui/material/TextField';
 import Checkbox from '@mui/material/Checkbox';
 import {Link,useNavigate} from 'react-router-dom';
+import {useState} from 'react';
+import axios from 'axios';
+import { CircularProgress } from '@mui/material';
+
+
+let username = "",password = ""
 
 const Login= ()=>{
+
+    const [validateusername, setValidateUsername] = useState(false)
+    const [validatePassword, setValidatePassword] = useState(false)
+    const [error, setError] = useState(false)
+    const [loading, setLoading] = useState(false)
+
 
     const naviagate = useNavigate()
     return (
@@ -17,8 +29,12 @@ const Login= ()=>{
         <Typography variant="h3" align='center' fontWeight={"bold"}>Login</Typography>
         <CardContent>
         <Stack m={2} spacing={3}>
-        <TextField  label="Email(@thapar.edu)" type="email"/>
-        <TextField label="Password" type="password" />
+        <TextField  error={validateusername} onChange={(e)=>{
+            username = e.target.value 
+        }} label="Username" type="email"/>
+        <TextField error={validatePassword} onChange={(e)=>{
+            password = e.target.value
+        }} label="Password" type="password" />
         <Grid container rowspacing={12}>
         <Grid item xs={11}>
         <FormControlLabel control={<Checkbox defaultChecked />} label="Remember Me" />
@@ -33,12 +49,82 @@ const Login= ()=>{
        
 
         <Button onClick={()=>{
-            naviagate('/studenthome')
+            setError(false);
+            if(username === "") setValidateUsername(true)
+            if(password === "") setValidatePassword(true)
+            if(username !== "" && password !== "")
+            {
+                setLoading(true)
+                var data = JSON.stringify({
+                    "username": username,
+                    "password": password
+                  });
+                  
+                  var config = {
+                    method: 'post',
+                    url: 'http://localhost:8000/login/',
+                    headers: { 
+                      'Content-Type': 'application/json'
+                    },
+                    data : data
+                  };
+                  
+                  axios(config)
+                  .then(function (response) {
+                    localStorage.setItem('token',response.token)
+                    setLoading(false)
+                    naviagate('/studenthome')
+                  })
+                  .catch(function (error) {
+                    console.log(error)
+                        setLoading(false)
+                        setError(true)
+                });
+                  
+
+            }
+            
         }} variant="contained" color="success">Sign In As Learner</Button>
          <Button onClick={()=>{
-            naviagate('/doctorhome')
+            setError(false);
+            if(username === "") setValidateUsername(true)
+            if(password === "") setValidatePassword(true)
+            if(username !== "" && password !== "")
+            {
+                setLoading(true)
+                var data = JSON.stringify({
+                    "username": username,
+                    "password": password
+                  });
+                  
+                  var config = {
+                    method: 'post',
+                    url: 'http://localhost:8000/login/',
+                    headers: { 
+                      'Content-Type': 'application/json'
+                    },
+                    data : data
+                  };
+                  
+                  axios(config)
+                  .then(function (response) {
+                    localStorage.setItem('token',response.token)
+                    setLoading(false)
+                    naviagate('/doctorhome')
+                  })
+                  .catch(function (error) {
+                    console.log(error)
+                        setLoading(false)
+                        setError(true)
+                });
+                  
+
+            }
+            
         }} variant="contained" color="success">Sign In As Doctor</Button>
       </Stack>
+      {error?<h2 style={{textAlign:'center'}}>Invalid Credentials</h2>:null}
+      {loading?<CircularProgress/>: null}
         </CardContent>
     </Card>
     </Grid>
