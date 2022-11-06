@@ -8,7 +8,10 @@ import Typography from '@mui/material/Typography';
 import InputBase from '@mui/material/InputBase';
 import MenuIcon from '@mui/icons-material/Menu';
 import SearchIcon from '@mui/icons-material/Search';
-
+import {useState} from 'react';
+import axios from 'axios';
+import { CircularProgress } from '@mui/material';
+let tempid="" 
 const Search = styled('div')(({ theme }) => ({
   position: 'relative',
   borderRadius: theme.shape.borderRadius,
@@ -52,6 +55,8 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
 }));
 
 export default function NavBarDoc(props) {
+  console.log('passed name is')
+  console.log(props.name)
   return (
     <Box sx={{ flexGrow: 1 }}>
       <AppBar position="static">
@@ -62,9 +67,14 @@ export default function NavBarDoc(props) {
             component="div"
             sx={{ flexGrow: 1, display: { xs: 'none', sm: 'block' } }}
           >
-            {props.name}
+           Welcome {props.name}
           </Typography>
-          <Search sx={{margin:'3vh'}}>
+          <Search sx={{margin:'3vh'}}
+             onChange={
+                e => tempid=e.target.value
+             }
+          >
+
             <SearchIconWrapper>
               <SearchIcon />
             </SearchIconWrapper>
@@ -73,7 +83,171 @@ export default function NavBarDoc(props) {
               inputProps={{ 'aria-label': 'search' }}
             />
           </Search>
-          <Button color="inherit">View Plots</Button>
+          <Button onClick={()=>{
+                  console.log("value earlier")
+                  console.log(tempid)
+                  //here set the data for this person in data.js file as well a time series data should be returned 
+                  //use api for getting patient time series data 
+                  //then u need to extract and put it in data file 
+                  //add token of doctor here 
+                  console.log(localStorage.getItem('token'));
+                  var config = {
+                    method: 'get',
+                    url: 'http://localhost:8000/score/',
+                    headers: { 
+                      'Authorization': `Token ${localStorage.getItem('token')}`
+                    },
+                    params: {
+                      id : tempid, 
+                      type : "Object Classification Test"
+                    }
+                  };
+                  console.log('config created')
+                  console.log(config)
+                  axios(config)
+                  .then(function (response) {
+                    console.log('got response')
+                    console.log(JSON.stringify(response.data));
+                    //iterate on this data and store in a list of map 
+                    //put this in first data list 
+                    let data1=[]
+                    response.data.forEach((elem)=>{
+                      data1.push({
+                        'datetime':elem.timestamp.substr(0,10),
+                        'score1':elem.score,
+                      })
+                      console.log(elem.timestamp)
+                      console.log(elem.timestamp.substr(0,10))
+ 
+                    })
+                    console.log(data1)
+                    props.setList1(data1)
+                  })
+                  .catch(function (error) {
+                    console.log(error);
+                  });
+
+                  //test 2
+
+                  var config = {
+                    method: 'get',
+                    url: 'http://localhost:8000/score/',
+                    headers: { 
+                      'Authorization': `Token ${localStorage.getItem('token')}`
+                    },
+                    params: {
+                      id : tempid, 
+                      type : "Handwriting Recognition Test"
+                    }
+                  };
+                  console.log('config created')
+                  console.log(config)
+                  axios(config)
+                  .then(function (response) {
+                    console.log('got response')
+                    console.log(JSON.stringify(response.data));
+                    //iterate on this data and store in a list of map 
+                    //put this in first data list 
+                    let data1=[]
+                    response.data.forEach((elem)=>{
+                      data1.push({
+                        'datetime':elem.timestamp.substr(0,10),
+                        'score1':elem.score,
+                      })
+                      console.log(elem.timestamp)
+                      console.log(elem.timestamp.substr(0,10))
+ 
+                    })
+                    console.log('data for handwirting')
+                    console.log(data1)
+                    props.setList2(data1)
+                  })
+                  .catch(function (error) {
+                    console.log(error);
+                  });
+
+                  //test 3
+
+                  var config = {
+                    method: 'get',
+                    url: 'http://localhost:8000/score/',
+                    headers: { 
+                      'Authorization': `Token ${localStorage.getItem('token')}`
+                    },
+                    params: {
+                      id : tempid, 
+                      type : "Rapid Color Naming"
+                    }
+                  };
+                  console.log('config created')
+                  console.log(config)
+                  axios(config)
+                  .then(function (response) {
+                    console.log('got response')
+                    console.log(JSON.stringify(response.data));
+                    //iterate on this data and store in a list of map 
+                    //put this in first data list 
+                    let data1=[]
+                    response.data.forEach((elem)=>{
+                      data1.push({
+                        'datetime':elem.timestamp.substr(0,10),
+                        'score1':elem.score,
+                      })
+                      console.log(elem.timestamp)
+                      console.log(elem.timestamp.substr(0,10))
+ 
+                    })
+                    console.log(data1)
+                    props.setList3(data1)
+                    
+                  })
+                  .catch(function (error) {
+                    console.log(error);
+                  });
+
+                  //test 4 
+                  var config = {
+                    method: 'get',
+                    url: 'http://localhost:8000/score/',
+                    headers: { 
+                      'Authorization': `Token ${localStorage.getItem('token')}`
+                    },
+                    params: {
+                      id : tempid, 
+                      type : "Reading Comprehension Test"
+                    }
+                  };
+                  console.log('config created')
+                  console.log(config)
+                  axios(config)
+                  .then(function (response) {
+                    console.log('got response')
+                    console.log(JSON.stringify(response.data));
+                    //iterate on this data and store in a list of map 
+                    //put this in first data list 
+                    let data1=[]
+                    response.data.forEach((elem)=>{
+                      data1.push({
+                        'datetime':elem.timestamp.substr(0,10),
+                        'score1':elem.score,
+                      })
+                      console.log(elem.timestamp)
+                      console.log(elem.timestamp.substr(0,10))
+ 
+                    })
+                    console.log(data1)
+                    props.setList4(data1)
+                    
+                  props.setId(tempid)
+                  })
+                  .catch(function (error) {
+                    console.log(error);
+                  });
+
+                  console.log('done')
+
+                  
+                }}  color="inherit">View Plots</Button>
           <Button color="inherit">Logout</Button>
         </Toolbar>
       </AppBar>

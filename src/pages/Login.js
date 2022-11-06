@@ -71,7 +71,10 @@ const Login= ()=>{
                   
                   axios(config)
                   .then(function (response) {
-                    localStorage.setItem('token',response.token)
+                    localStorage.clear()
+                    console.log(response)
+                    console.log(response.data.token)
+                    localStorage.setItem('token',response.data.token)
                     setLoading(false)
                     naviagate('/studenthome')
                   })
@@ -108,7 +111,10 @@ const Login= ()=>{
                   
                   axios(config)
                   .then(function (response) {
-                    localStorage.setItem('token',response.token)
+                    localStorage.clear()
+                    console.log(response)
+                    console.log(response.data.token)
+                    localStorage.setItem('token',response.data.token)
                     setLoading(false)
                     naviagate('/doctorhome')
                   })
