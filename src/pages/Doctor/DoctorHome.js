@@ -21,10 +21,10 @@ import axios from 'axios';
 const DoctorHome=()=>{
     const [id,setId]=useState(false)
     //get doctor getails over here 
-    const [list1,setList1]=useState(false)
-    const [list2,setList2]=useState(false)
-    const [list3,setList3]=useState(false)
-    const [list4,setList4]=useState(false)
+    const [list1,setList1]=useState()
+    const [list2,setList2]=useState()
+    const [list3,setList3]=useState()
+    const [list4,setList4]=useState()
     const [obj,setObj]=useState(false)
     useEffect(() => {
         var config = {

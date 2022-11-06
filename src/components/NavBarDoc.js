@@ -10,6 +10,7 @@ import MenuIcon from '@mui/icons-material/Menu';
 import SearchIcon from '@mui/icons-material/Search';
 import {useState} from 'react';
 import axios from 'axios';
+import {Link,useNavigate} from 'react-router-dom';
 import { CircularProgress } from '@mui/material';
 let tempid="" 
 const Search = styled('div')(({ theme }) => ({
@@ -57,6 +58,7 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
 export default function NavBarDoc(props) {
   console.log('passed name is')
   console.log(props.name)
+  const naviagate = useNavigate()
   return (
     <Box sx={{ flexGrow: 1 }}>
       <AppBar position="static">
@@ -86,6 +88,8 @@ export default function NavBarDoc(props) {
           <Button onClick={()=>{
                   console.log("value earlier")
                   console.log(tempid)
+                  props.setId(false)
+
                   //here set the data for this person in data.js file as well a time series data should be returned 
                   //use api for getting patient time series data 
                   //then u need to extract and put it in data file 
@@ -248,7 +252,10 @@ export default function NavBarDoc(props) {
 
                   
                 }}  color="inherit">View Plots</Button>
-          <Button color="inherit">Logout</Button>
+          <Button color="inherit" onClick={()=>{
+              localStorage.clear();
+              naviagate('/login')
+          }}>Logout</Button>
         </Toolbar>
       </AppBar>
     </Box>

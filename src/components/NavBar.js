@@ -6,7 +6,10 @@ import Button from '@mui/material/Button';
 import IconButton from '@mui/material/IconButton';
 import MenuIcon from '@mui/icons-material/Menu';
 
+import {Link,useNavigate} from 'react-router-dom';
 const NavBar = (props)=>{
+  
+  const naviagate = useNavigate()
     return (
         <>
          <Box sx={{ flexGrow: 1}}>
@@ -15,8 +18,10 @@ const NavBar = (props)=>{
           <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
             Welcome, {props.name} !
           </Typography>
-          <Button color="inherit">View Previous Results</Button>
-          <Button color="inherit">Logout</Button>
+          <Button color="inherit"onClick={()=>{
+              localStorage.clear();
+              naviagate('/login')
+          }}>Logout</Button>
         </Toolbar>
       </AppBar>
     </Box>
