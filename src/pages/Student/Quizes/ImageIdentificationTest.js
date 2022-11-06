@@ -15,6 +15,7 @@ import SampleImage7 from '../../../static/comb.png'
 import SampleImage8 from '../../../static/duck.jpg'
 import SampleImage9 from '../../../static/spoon.png'
 import SampleImage10 from '../../../static/three.jpg'
+import axios from 'axios';
 const ImageIdentificationTest = () => {
     const questions = [
 		{
@@ -55,9 +56,9 @@ const ImageIdentificationTest = () => {
 			questionText: 'Identify the given object',
 			answerOptions: [
 				{ answerText: 'ઘOOK', isCorrect: false },
-				{ answerText: 'BOOK', isCorrect: false },
+				{ answerText: 'BOOK', isCorrect: true },
 				{ answerText: 'BOOﻼ', isCorrect: false },
-				{ answerText: 'ઘOOﻼ', isCorrect: true },
+				{ answerText: 'ઘOOﻼ', isCorrect: false },
 			],
 		},
         {
@@ -141,6 +142,7 @@ const ImageIdentificationTest = () => {
 			setCurrentQuestion(nextQuestion);
 		} else {
 			setShowScore(true);
+			
 		}
 	};
     return(
@@ -151,7 +153,35 @@ const ImageIdentificationTest = () => {
 				<Typography fontWeight={"bold"} sx={{my:5}} align="center" variant="h3">
 					You scored {score} out of {questions.length}
                     </Typography>
-                    <Button  size="large" variant="contained" color="success" sx={{marginLeft:'750px'}}>Submit your Score</Button>
+                    <Button  size="large" variant="contained" color="success" sx={{marginLeft:'750px'}}
+					 onClick={()=>{
+						//here send the score to backend through the api
+						var data = JSON.stringify({
+							"score": score,
+							"type_of_test": "Object Classification Test"
+						});
+						
+						var config = {
+							method: 'post',
+							url: 'http://localhost:8000/score/',
+							headers: { 
+							'Authorization':`Token ${localStorage.getItem('token')}`,
+							'Content-Type': 'application/json'
+							},
+							data : data
+						};
+						
+						axios(config)
+						.then(function (response) {
+							console.log(JSON.stringify(response.data));
+							console.log('data sent checkout')
+						})
+						.catch(function (error) {
+							console.log(error);
+						});
+			
+					 }}
+					>Submit your Score</Button>
             </>
 			) : (
 				<>
