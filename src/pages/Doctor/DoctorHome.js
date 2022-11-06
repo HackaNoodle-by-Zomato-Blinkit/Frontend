@@ -39,7 +39,7 @@ const DoctorHome=()=>{
         .then(function (response) {
             console.log(JSON.stringify(response.data));
             console.log(obj.name)
-            setObj(obj);
+            setObj(response.data);
         })
         .catch(function (error) {
             console.log(error);
@@ -52,7 +52,7 @@ const DoctorHome=()=>{
     console.log(obj);
     return (
         <>
-        <NavBarDoc setId={setId} setList1={setList1} setList2={setList2} setList3={setList3} setList4={setList4} name="${}"/>
+        {obj?<NavBarDoc setId={setId} setList1={setList1} setList2={setList2} setList3={setList3} setList4={setList4} name={obj.name}/>:null}
         {id?
         <div>
             <div>
