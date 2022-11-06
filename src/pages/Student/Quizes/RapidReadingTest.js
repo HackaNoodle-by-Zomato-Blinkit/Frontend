@@ -4,10 +4,9 @@ import {Box, Grid,Paper,Container} from '@mui/material';
 import { styled } from '@mui/material/styles';
 import Fab from '@mui/material/Fab';
 import KeyboardVoiceIcon from '@mui/icons-material/KeyboardVoice';
-import { useState} from 'react';
 import StopIcon from '@mui/icons-material/Stop';
-
-
+import { useState, useEffect, useRef } from "react";
+import axios from 'axios';
 
 
 
@@ -46,7 +45,10 @@ for(var i = 0; i < 1; i++ ){
         data.push(color[Math.floor(Math.random() * 6)])
         check += data[data.length-1][0].toLocaleUpperCase()
 }
-
+function playSound(url) {
+    var a = new Audio(url);
+    a.play();
+}
 
 
 
@@ -54,8 +56,67 @@ const RapidReadingTest = () => {
 
     // const [timer, setTimer] = useState(30)
     const [rec,setRec] = useState(false)
+    const [isEnableMediaDevices, setIsEnableMediaDevices] = useState(false);
+    const [isRecording, setIsRecording] = useState(false);
+    const chunks = useRef([]);
+    const recorder = useRef(null);
+  
+    // const [audioURL, setAudioURL] = useState(null);
+    let audio = document.getElementById("ad")
+    const [audioURL,setAudioURL] = useState(null)
 
 
+    const checkEnableMediaDevices = () => {
+        if (!navigator.mediaDevices) {
+          return false;
+        }
+        if (!navigator.mediaDevices.getUserMedia) {
+          return false;
+        }
+        return true;
+      };
+    
+      useEffect(() => {
+        setIsEnableMediaDevices(checkEnableMediaDevices());
+      }, [isEnableMediaDevices]);
+    
+      const onClickStart = () => {
+        const constraints = { audio: true, video: false };
+        navigator.mediaDevices
+          .getUserMedia(constraints)
+          .then((stream) => {
+            setIsRecording(true);
+            const mediaRecorder = new MediaRecorder(stream);
+    
+            mediaRecorder.ondataavailable = (e) => {
+              chunks.current.push(e.data);
+            };
+            mediaRecorder.onstop = (e) => {
+              if (chunks.current.length < 1) {
+                alert("no data");
+              }
+
+              let blob = new Blob(chunks.current, {
+                type: 'audio/mp3'
+              });
+              const audioURL = window.URL.createObjectURL(blob);
+              audio.src = audioURL
+        
+              setAudioURL(audioURL)
+              setIsRecording(false);
+            };
+            chunks.current = [];
+            mediaRecorder.start(100);
+            recorder.current = mediaRecorder;
+          })
+          .catch((e) => {
+            alert(e);
+          });
+      };
+    
+      const onClickStop = () => {
+        recorder.current.stop();
+      };
 
     return (
         <>
@@ -78,11 +139,59 @@ const RapidReadingTest = () => {
             
             
             <Fab onClick={()=>{
-                //  if(!rec) startRecording()
-                //  else {
-                //      stopRecording()
-                     
-                //  }
+
+
+                 if(!rec) {
+                   onClickStart()
+                 }
+                 else {
+                    onClickStop()
+                   var xhr=new XMLHttpRequest();
+                    xhr.onload=function(e) {
+                    if(this.readyState === 4) {
+                        console.log("Server returned: ",e.target.responseText);
+                    }
+                    };
+                    let blob =  new Blob(audioURL)
+                    var fd=new FormData();
+                    fd.append("audio",blob, "check.wav");
+                    xhr.open("POST","http://localhost:8000/read/",true);
+                    xhr.send(fd);
+//                     var data = new FormData();
+//   //covert audioURL to blob
+               
+//                     data.append('text', 'check if this is working');
+//                     let blob = new Blob([audioURL], { type: "audio/mp3" });
+//                     // The full Blob Object can be seen 
+//                     // in the Console of the Browser                  
+//                     var reader = new FileReader();
+//                     reader.readAsDataURL(blob);
+//                     reader.onloadend = function () {
+//                     var base64String = reader.result;
+//                     base64String = base64String.substr(base64String.indexOf(', ') + 1)
+//                     data.append('audio',base64String)
+//                     console.log(base64String)
+                        
+//                     var config = {
+//                         method: 'post',
+//                         url: 'http://localhost:8000/read/',
+                      
+//                         data : data
+//                         };
+    
+//                         axios(config)
+//                         .then(function (response) {
+    
+//                         console.log(JSON.stringify(response.data));
+//                         })
+//                         .catch(function (error) {
+//                         console.log(error);
+//                         });
+//                     }
+
+                  
+
+                 }
                 setRec(!rec)
                 
                
@@ -90,8 +199,23 @@ const RapidReadingTest = () => {
         {!rec?<KeyboardVoiceIcon sx={{width : '40px',height : '40px'}}/>:<StopIcon sx={{width : '40px',height : '40px'}}/>}
       </Fab>
       
+
+<div>
+        <div>
+          <button
+            disabled={!isEnableMediaDevices}
+            onClick={!isRecording ? onClickStart : onClickStop}
+          >
+            {!isRecording ? "Recorde" : "Stop"}
+          </button>
+        </div>
+        <div>
+          <audio id="ad" controls  />
+        </div>
+      </div>
          </>
 
     )
+
 }
 export default RapidReadingTest;
